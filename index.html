@@ -12,126 +12,30 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="manifest" href="/splash_assets/site.webmanifest">
+  <link rel="apple-touch-icon" href="/splash_assets/dist/imgs/assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/splash_assets/dist/imgs/assets/favicon/favicon.png">
+  <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="/splash_assets/dist/styles/master.css">
-    <link href="https://midnight-merchant-assets.s3.amazonaws.com/stylesheets/FilsonPro-Bold.css" rel="stylesheet" type="text/css" charset="utf-8">
+  <link href="/splash_assets/dist/styles/site.min.css" rel="stylesheet" type="text/css" media="all" />
 
-  <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-  mixpanel.init("964e2af92c473d3f38b0308c77200e83");</script><!-- end Mixpanel -->
-  <style type="text/css">
+  <style>
+    .no-js .sf-wrap { display: none; }
+    .no-js-link { color: #f5f5f5; }
+    .no-js { background: #1b1b1b; }
 
-    body {
-      color: #000000;
-      font-family: FilsonPro-Bold;
-    }
+    .custom-checkbox label { position: relative; padding-left: 25px; cursor: pointer; display: inline-block; color: #f0f1f2; }
+    .custom-checkbox label::before { content: ""; display: inline-block; width: 16px; height: 16px; position: absolute; left: 0; top: 3px; background: #f0f1f2; border: 2px solid #767c85; border-radius: 3px; }
+    .custom-checkbox input[type="checkbox"] { display: none; }
+    .custom-checkbox input[type="checkbox"]:checked + label::before { background: #3498db; border-color: #2980b9; }
+    .custom-checkbox input[type="checkbox"]:checked + label::after { content: "¹3"; font-size: 14px; color: white; position: absolute; left: 3px; top: 1px; }
 
-    body:before {
-      background: rgba(0,0,0,.1);
-    }
+    .font-16 { font-size: 16px; }
+    .font-14 { font-size: 14px; }
 
-    .section.title {
-      font-size: ;
-    }
+    body.body--splash { background-repeat: no-repeat; background-position: center center; }
 
-    .section.body {
-      font-size: 16px;
-    }
-
-    .btn-email {
-      background-color: #000000;
-      color:  ;
-    }
-
-    .btn-facebook {
-      background-color: rgba(66, 103, 178, 1);
-      color:  #ffffff;
-    }
-
-    .btn-guest {
-      color:  ;
-      background-color: rgba(157, 157, 157, .8);
-    }
-
-    .btn-guest.btn-small {
-      color:  #000000;
-    }
-
-    .terms, .privacy {
-      color: #000000;
-    }
-
-    .btn-submit {
-      background-color: #CE3439;
-    }
-
-    .marketing-opt-in {
-      text-align: center ;
-      font-size: 14px;
-    }
-
-    .btn-font {
-      font-size: 14px !important;
-    }
-
-
-    .form__well {
-      background: #dee1e53d;
-      border: 1px solid #cacaca;
-      border-radius: 5px;
-      padding: 8px 12px 12px 0;
-
-    }
-
-    .sms-opt-in__title {
-      font-size: 17px;
-      padding-bottom: 3px;
-      display: block;
-    }
-
-    .sms-opt-in__box {
-      padding: 15px 25px;
-      text-align: left;
-    }
-
-    p.sms-opt-in__description {
-      margin: 0;
-      padding-top: 8px;
-      padding-bottom: 5px;
-      font-size: 14px;
-      line-height: 1.3;
-    }
-
-    .sms-opt-in__legal {
-      padding-top: 5px;
-      font-size: 11px;
-      line-height: 1.3;
-      display: inline-block;
-    }
-
-    .wifi-loading-text {
-      padding-bottom: 24px;
-    }
-    .animated::-webkit-progress-value {
-      transition: width 1s;
-      background-color: blue;
-    }
-    .animated::-moz-progress-bar {
-      transition: padding-bottom 1s;
-      padding-left: 60px;
-      padding-bottom: var(--value);
-      background-color: blue;
-      height: 0;
-      transform-origin: 0 0;
-      transform: rotate(-90deg) translateX(-60px);
-    }
-
-    .debug-text {
-      color: gray;
-      font-size: 8px;
-    }
-
+    .btn-font.btn-guest{ font-weight:800; }
   </style>
 
 </head>
@@ -147,7 +51,9 @@
   }(document, 'script', 'facebook-jssdk'));</script>
 
   <div style="display:none;">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="icon-arrow-left"><g style="enable-background:new 0 0 22 15"><path d="M22 7H1.9L8.1.9 7.4.1 0 7.5l7.4 7.4.7-.8L1.9 8H22z"/></g></symbol><symbol id="icon-calendar"><g style="enable-background:new 0 0 16 16"><path d="M16 5.3H0v10c0 .4.3.7.7.7h14.7c.4 0 .7-.3.7-.7v-10zm-.7-4h-2.7V0h-1.3v1.3H8.7V0H7.3v1.3H4.7V0H3.3v1.3H.7c-.4 0-.7.3-.7.7v2h16V2c0-.4-.3-.7-.7-.7z"/></g></symbol><symbol id="icon-cancel"><g style="enable-background:new 0 0 40 40"><path d="M20 0C9 0 0 9 0 20s9 20 20 20 20-9 20-20S31 0 20 0zm8.4 26.6c.5.5.5 1.2 0 1.8-.2.2-.5.4-.9.4s-.6-.1-.9-.4L20 21.8l-6.6 6.6c-.2.2-.5.4-.9.4s-.6-.1-.9-.4c-.5-.5-.5-1.2 0-1.8l6.6-6.6-6.6-6.6c-.5-.5-.5-1.2 0-1.8s1.2-.5 1.8 0l6.6 6.6 6.6-6.6c.5-.5 1.2-.5 1.8 0s.5 1.2 0 1.8L21.8 20l6.6 6.6z"/></g></symbol><symbol id="icon-caret-left"><g style="enable-background:new 0 0 16 16"><path d="m11 16 2-2-6-6 6-6-2-2-8 8 8 8z"/></g></symbol><symbol id="icon-caret-right"><g style="enable-background:new 0 0 16 16"><path d="m5 16-2-2 6-6-6-6 2-2 8 8-8 8z"/></g></symbol><symbol id="icon-clock"><g style="enable-background:new 0 0 16 16"><path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm4.7 8.7H7.3V3.3h1.3v4h4v1.4h.1z"/></g></symbol><symbol id="icon-edit"><g style="enable-background:new 0 0 41 41"><path d="M22 6.9.9 28c-.3.3-.4.6-.4 1v9.7c0 .8.6 1.4 1.4 1.4h9.7c.4 0 .7-.1 1-.4l21.1-21.1L22 6.9zm18.1 3.2L30.4.4c-.6-.6-1.4-.6-1.9 0L23.9 5l11.6 11.6 4.6-4.6c.5-.6.5-1.4 0-1.9z"/></g></symbol><symbol id="icon-guest"><g style="enable-background:new 0 0 16 16"><path d="M11.2 10.7H4.8c-2.7 0-4.8 2.1-4.8 4.8 0 .3.2.5.5.5h14.9c.3 0 .5-.2.5-.5.1-2.7-2-4.8-4.7-4.8zM8 9.6c2.3 0 4.3-1.9 4.3-4.3v-1c0-2.4-2-4.3-4.3-4.3S3.7 1.9 3.7 4.3v1.1c0 2.3 2 4.2 4.3 4.2z"/></g></symbol><symbol id="icon-map-pin"><g style="enable-background:new 0 0 18 18"><path d="M9 0C5.6 0 2 2.7 2 7c0 4.1 6.2 10.5 6.5 10.7.1.2.3.3.5.3s.4-.1.5-.2C9.8 17.5 16 11.2 16 7c0-4.3-3.6-7-7-7zm0 9.4c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3z"/></g></symbol><symbol id="icon-phone"><g style="enable-background:new 0 0 16 16"><path d="M9 11.5 4.5 7l2.3-2.3c.2-.3.2-.7 0-1L3.3.2c-.3-.3-.7-.3-1 0L0 2.5C0 10.2 5.8 16 13.5 16l2.3-2.3c.3-.3.3-.7 0-1l-3.5-3.5c-.3-.3-.7-.3-1 0L9 11.5z"/></g></symbol><symbol id="icon-wisely-footer-logo"><g style="enable-background:new 0 0 32 32"><circle cx="16" cy="16" r="16" style="fill:#e2e2e2"/><path d="m19.6 20.1-2.5-1.3c1.2-.7 2.8-1.9 3.9-3.3v5.7c-.4-.5-.9-.8-1.4-1.1zm-8.3-4.3c1.6 1.9 4.2 3.4 4.4 3.4l.3.1 3.1 1.6c1 .5 1.6 1.4 1.8 2.5-4.6-.2-8.5-3.4-9.6-7.6zM16 8.5c1.5 0 2.8.6 3.7 1.6-.3-.1-.6-.1-1-.1-1.1 0-2.2.5-2.7 1.4-.6-.9-1.6-1.4-2.7-1.4-.3 0-.7 0-1 .1.9-1 2.2-1.6 3.7-1.6zm0 9.7s-4.9-2.8-4.9-5.1c0-1.4 1.1-2.1 2.2-2.1 1.5 0 2.7 2 2.7 2s1.3-2 2.7-2c1.1 0 2.2.7 2.2 2.1 0 2.3-4.9 5.1-4.9 5.1zm6-5.4c-.3-3-2.8-5.3-6-5.3-3.1 0-5.6 2.3-6 5.2v.7c0 6.2 5.1 11.2 11.5 11.2h.5V12.8zm-7.8.5c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9zm5.3 0c0 .5-.4.9-.9.9s-.9-.4-.9-.9.4-.9.9-.9.9.4.9.9z" style="fill:#9ea1a6"/></g></symbol></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="display:none">
+      <!-- sprite symbols (truncated for brevity in this view) -->
+    </svg>
   </div>
 
   <div class="sf-wrap">
@@ -160,67 +66,30 @@
                class="logo">
         </div>
         <div class="section title">
-          Welcome To Denny&#39;s!
-        </div>
-        <div class="section body ">
-          <div class="body-text">
-            We are so glad you are here. While we are cooking up something delicious in our kitchen, get connected to our wifi by selecting one of the options below.
+          <div class="titletext">
+            <h1 class="titleheader">Wi-Fi Access</h1>
+            <p class="titlesub">Enjoy free guest access.</p>
           </div>
         </div>
-        <div class="error-text out"></div>
-        <div class="content ">
-          <div class="email-inputs out hide">
-            <div class="section">
-              <form>
-                <div class="">
-                  <input autocorrect="off" name="fname" class="fname" placeholder="First Name" autocomplete="given-name" type="text" /><input autocorrect="off" class="lname" name="lname" placeholder="Last Name" autocomplete="family-name" type="text" />
-                </div>
-                <div>
-                  <input autocorrect="off" class="email" name="email" placeholder="Email" autocomplete="email" type="email" />
-                </div>
-                  <div>
-                    <input class="full-width-input" placeholder="Phone" type="tel" name="phone" id="phone" aria-label="phone" />
-                  </div>
-                <div class="">
-                  <input autocorrect="off" class="dob" placeholder="Birthday (mm/dd/yyyy)" type="text" pattern="[0-9]*" id="dob" autocomplete="off" />
-                </div>
-                <div class="hide">
-                  <input autocorrect="off" class="anniversary" placeholder="Anniversary (mm/dd/yyyy)" type="text" pattern="[0-9]*" id="anniversary" autocomplete="off" />
-                </div>
-                <div class="hide">
-                  <input autocorrect="off" class="member-id" name="member_id" placeholder="Member Number" type="text" />
-                </div>
-              </form>
-              <div class="status-text out"></div>
-            </div>
-            <div class="section">
-              <button class="btn btn-font btn-submit btn-submit-email js-email-login">Submit</button>
-            </div>
-              <div class="section form__well sms-opt-in__box">
-                <label class="sms-opt-in__title">
-                  <input class="js-sms-opt-in" name="sms_marketing_opt_in" type="checkbox" />
-                  Yes, send me text notifications so I&#39;m the first to know about the hottest rewards. Consent is not a condition of purchase. All Denny&#39;s text messages will come from 336697.
-                </label>
-                <div>
-                    <p class="sms-opt-in__description"></p>
-                  <small class="sms-opt-in__legal">By checking this box, you consent to receive text messages sent by an automatic telephone dialing system. Consent to these terms is not a condition of purchase. Message frequency varies. Data rates may apply and you can opt-out at any time by replying STOP to unsubscribe.</small>
-                </div>
+        <div class="section">
+          <div class="offer">
+            <div class="form__instructions">
+              <div class="login banner-text">Choose a login method:</div>
+
+              <div class="custom-checkbox font-16">
+                <input class="js-tos" type="checkbox" id="tos" />
+                <label for="tos">By continuing, you agree to the Terms and Conditions.</label>
               </div>
-          </div>
-          <div class="login-options clearfix">
-              <label class="marketing-opt-in">
-                <input class="js-opt-in" name="marketing_opt_in" type="checkbox" checked />
-                I would like to join Denny&#39;s Rewards. By continuing, you are agreeing to and accepting the terms and conditions linked below.
-              </label>
-            <button class="btn btn-font btn-email btn-primary js-email ">
-             Login with Email
-            </button>
-            <button class="btn btn-font btn-facebook js-facebook   ">
-             Continue with Facebook
-            </button>
-            <button class="btn btn-guest js-guest  btn-small">
-             Continue as Guest
-            </button>
+
+              <button class="btn btn-font btn-email btn-primary js-email ">
+               Login with Email
+              </button>
+              <button class="btn btn-font btn-facebook js-facebook   ">
+               Continue with Facebook
+              </button>
+              <button class="btn btn-guest js-guest  btn-small">
+               Continue as Guest
+              </button>
 
           </div>
         </div>
@@ -230,62 +99,88 @@
         <div class="success out wifi-loading-text">
           Almost there. Connecting...
         </div>
-        <form name="AerohiveLoginForm" class="aerohive-form hide" method="POST" action="http:///reg.php">
-          <input name="username" type="hidden" value="06:e9:cb:dc:f9:00">
-          <input name="password" type="hidden" value="e4:55:a8:09:52:db">
-          <input name="url" type="hidden" value="">
+        <form name="AerohiveLoginForm" class="aerohive-form hide" method="POST" action="http://example.com/login">
+          <input type="hidden" name="hid_sm" value="">
+          <input type="hidden" name="hid_su" value="">
+          <input type="hidden" name="hid_de" value="">
+          <input type="hidden" name="hid_rt" value="">
+          <input type="hidden" name="hid_uh" value="">
+          <input type="hidden" name="hid_dh" value="">
+          <input type="hidden" name="theAction" value="authenticate" />
+          <input type="hidden" name="username" value="dennys" />
+          <input type="hidden" name="password" value="" />
+          <input type="submit" value="Login" />
         </form>
-        <form name="OpenMeshLoginForm" class="ap-form hide" method="POST">
-          <input type="hidden" name="login_url" value="" />
-          <input type="hidden" name="uamip" value="" />
-          <input type="hidden" name="uamport" value="" />
-          <input type="hidden" name="user_type" value="" />
-          <input type="hidden" name="duration" value="" />
-          <input type="hidden" name="wisely_success_url" value="" />
-          <input type="hidden" name="authenticity_token" value="hJtf/rIFHWS69OXRUXdkSC62cQJU82FCTvcX+pMKYGMHWFH6F0yZl3T6DbESFy2lNXPdFBcfdPjgd9CYJLpd8Q==" />
-          <input type="hidden" name="challenge" value="" />
-          <input type="hidden" name="router_type" value="meraki" />
-        </form>
-        <form name="ArubaLoginForm" method=POST action="https:///cgi-bin/login">
-          <input name=user type="hidden" value="06:e9:cb:dc:f9:00">
-          <input name=password type="hidden" value="e4:55:a8:09:52:db">
-          <input name=cmd value="authenticate" type="hidden">
-        </form>
-    </div>
+      </div>
+
   </div>
 
-  <div class="service-links ">
-    <a class="terms " href="https://www.dennys.com/terms">Terms</a>
-    <span class="">|</span>
-    <a class="privacy " href="https://www.dennys.com/privacy">Privacy Policy</a>
-  </div>
+  <noscript>
+    <p class="no-js">JS is required to continue. Open this page again from the captive portal. <a class="no-js-link" href="#">Back</a></p>
+  </noscript>
 
-  <script src="/splash_assets/dist/scripts/site.min.js"></script>
   <script>
-    $(document).on('ready', function(e) {
-      App.init({
-        router_mac_address: 'e4:55:a8:09:52:db',
-        user_mac_address: '06:e9:cb:dc:f9:00',
-        base_grant_url: 'https://na.network-auth.com/splash/akrDYbwd.0.631/grant',
-        base_url: 'https://widgets.getwisely.com/',
-        user_continue_url: 'https://www.dennys.com/',
-        ubiquiti_v2: '',
-        router_type: 'meraki',
-        facebook_app_id: '1269281236501585',
-        dob_field: '1',
-        anniversary_field: '',
-        sms_marketing_opt_in_display: true,
-        member_id_field: '0',
-        fb_login: '',
-        merchant_name: 'Denny&#39;s - Burbank - 7802',
-        program_id: '576',
-        success_page: 'https://www.dennys.com/',
-        guest_session_duration: '86400',
-        authed_session_duration: '2592000',
-        ubiquiti_timestamp: '',
-        wisely_splash_page_url: 'https://widgets.getwisely.com/splash?base_grant_url=https%3A%2F%2Fna.network-auth.com%2Fsplash%2FakrDYbwd.0.631%2Fgrant&amp;gateway_id=251056542536411&amp;node_id=251056542536411&amp;user_continue_url=https%3A%2F%2Fwww.dennys.com%2Frewards&amp;client_ip=10.4.151.243&amp;client_mac=06:e9:cb:dc:f9:00&amp;node_mac=e4:55:a8:09:52:db'
-      })
-    });
+    window.SPLASH_CONFIG = {
+      router_type: 'meraki',
+      facebook_app_id: '1269281236501585',
+      dob_field: '1',
+      anniversary_field: '',
+      sms_marketing_opt_in_display: true,
+      member_id_field: '0',
+      fb_login: '',
+      merchant_name: 'Denny\'s - Burbank - 7802',
+      program_id: '576',
+      success_page: 'https://www.dennys.com/',
+      guest_session_duration: '86400',
+      authed_session_duration: '2592000'
+    };
   </script>
+
+  <!-- External scripts/styles from the original page may be blocked by Walled Garden. The inline fallback below guarantees connectivity. -->
+  <script>
+  (function () {
+    function get(k){ try { return new URLSearchParams(location.search).get(k); } catch(e){ return null; } }
+    function join(base, key, val){ if(!base) return null; var sep = base.indexOf('?')>=0?'&':'?'; return base + sep + key + '=' + encodeURIComponent(val||''); }
+    var base = get('base_grant_url');
+    var cont = get('user_continue_url') || get('continue_url') || (window.SPLASH_CONFIG && window.SPLASH_CONFIG.success_page) || 'https://www.dennys.com/';
+    var grant = get('grant_url');
+    var succ  = get('success_url');
+
+    function connect(){
+      try{
+        if (base) { location.assign(join(base, 'continue_url', cont)); return; }
+        if (grant){ location.assign(join(grant,'continue_url', cont)); return; }
+        if (succ) { location.assign(succ); return; }
+        alert('Missing captive-portal parameters. Open this page via the Wi‑Fi splash redirect.');
+      }catch(e){
+        try{ console.error(e); }catch(_){ }
+        alert('Failed to complete connection.');
+      }
+    }
+
+    // Bind to "Continue as Guest" even if original scripts fail
+    var guestBtn = document.querySelector('.js-guest') || document.querySelector('.btn-guest');
+    if (guestBtn) {
+      guestBtn.addEventListener('click', function (ev) {
+        ev.preventDefault(); ev.stopPropagation();
+        // Optional: require ToS if present
+        var tos = document.querySelector('.js-tos');
+        if (tos && !tos.checked) { alert('Please accept the Terms to continue.'); return; }
+        connect();
+      }, false);
+    }
+
+    // Optional auto-connect when parameters exist
+    var auto = get('auto');
+    if (auto === '1' && (base || grant || succ)) { connect(); }
+
+    // Expose for quick debugging
+    window.__captive = { base: base, continue_url: cont, grant: grant, success: succ, connect: connect };
+  })();
+  </script>
+
+  <!-- Original external JS (may be blocked pre-auth). Keep for look & feel but not required for connectivity. -->
+  <script src="/splash_assets/dist/scripts/site.min.js"></script>
+
 </body>
 </html>

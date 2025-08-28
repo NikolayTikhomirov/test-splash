@@ -1,120 +1,165 @@
-
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Подключение к интернету — Captive Portal</title>
-  <meta name="description" content="Кнопка для подключения к интернету в гостевых сетях с captive portal (Meraki/UniFi/MikroTik/Coova)." />
+  <title>Connect to the Internet — Captive Portal Helper</title>
+  <meta name="description" content="Single-click helper page for captive portals (Meraki/UniFi/MikroTik/Coova). Fill or auto-detect parameters and press Connect." />
   <style>
     :root{--bg:#0b0f19;--card:#111827;--text:#e5e7eb;--muted:#9ca3af;--brand:#60a5fa;--brand2:#34d399}
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:
-      radial-gradient(1000px 700px at 80% -20%, #1f2937 0%, transparent 60%),
-      radial-gradient(700px 500px at -20% 100%, #0f766e 0%, transparent 60%), var(--bg);
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);
+      background:radial-gradient(1000px 700px at 80% -20%, #1f2937 0%, transparent 60%),
+                 radial-gradient(700px 500px at -20% 100%, #0f766e 0%, transparent 60%), var(--bg);
       display:grid;place-items:center;padding:24px}
-    .wrap{max-width:820px;width:100%}
+    .wrap{max-width:880px;width:100%}
     .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0));border:1px solid rgba(255,255,255,.1);
       border-radius:22px;padding:30px;backdrop-filter:blur(6px);box-shadow:0 16px 50px rgba(0,0,0,.35)}
-    h1{margin:0 0 8px;font-size:clamp(26px,4vw,40px)}
+    h1{margin:0 0 10px;font-size:clamp(26px,4vw,40px)}
     p{margin:8px 0 0;color:var(--muted)}
-    .btn{margin-top:22px;appearance:none;border:none;cursor:pointer;border-radius:14px;padding:14px 18px;font-size:16px;font-weight:700;
+    .grid{display:grid;gap:12px;margin-top:16px;grid-template-columns:1fr 1fr}
+    .grid.full{grid-template-columns:1fr}
+    label{font-size:13px;color:#cbd5e1}
+    .input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#0d1320;color:var(--text);outline:none}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .btn{appearance:none;border:none;cursor:pointer;border-radius:12px;padding:12px 16px;font-size:15px;font-weight:700;
       background:linear-gradient(135deg,var(--brand),var(--brand2));color:#0b0f19;transition:transform .08s ease, box-shadow .2s ease;
       box-shadow:0 10px 25px rgba(96,165,250,.35)}
-    .btn:disabled{opacity:.6;cursor:not-allowed;box-shadow:none}
-    .btn:hover:not(:disabled){transform:translateY(-1px)}
-    code{background:#0d1320;border:1px solid rgba(255,255,255,.1);padding:2px 6px;border-radius:8px}
-    .hint{margin-top:16px;font-size:14px;color:var(--muted)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--text);box-shadow:none}
+    .status{margin-top:14px;font-size:14px;color:var(--muted)}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .badge{font-size:12px;padding:6px 8px;border-radius:999px;background:#0d1320;border:1px solid rgba(255,255,255,.14)}
     .ok{color:#a7f3d0}
     .err{color:#fca5a5}
-    .kv{margin-top:12px;font-size:14px}
-    .kv dt{color:#9ca3af}
-    .kv dd{margin:0 0 6px}
+    .tos{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:#cbd5e1}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <main class="wrap">
     <section class="card" role="region" aria-labelledby="title">
-      <h1 id="title">Подключиться к интернету</h1>
-      <p>Эта страница предназначена для гостевых Wi‑Fi сетей с <em>captive portal</em>. Нажмите кнопку ниже, чтобы завершить авторизацию.</p>
+      <h1 id="title">Connect to the Internet</h1>
+      <p>This helper page works with captive portals. Detect params from the URL or enter them below, then press <em>Connect</em>.</p>
 
-      <button id="connectBtn" class="btn" disabled>Подключиться</button>
-      <p id="status" class="hint">Инициализация…</p>
+      <div class="badges" id="detected"></div>
 
-      <dl class="kv" id="kv"></dl>
+      <div class="grid full">
+        <div>
+          <label for="base_grant_url">Meraki <code>base_grant_url</code></label>
+          <input class="input" id="base_grant_url" type="url" placeholder="https://example.com/meraki/grant" />
+        </div>
+        <div>
+          <label for="user_continue_url">Continue URL (<code>user_continue_url</code>/<code>continue_url</code>)</label>
+          <input class="input" id="user_continue_url" type="url" placeholder="https://example.com/" value="https://example.com/" />
+        </div>
+        <div>
+          <label for="grant_url">Generic <code>grant_url</code> (UniFi/MikroTik)</label>
+          <input class="input" id="grant_url" type="url" placeholder="https://example.com/portal/grant" />
+        </div>
+        <div>
+          <label for="success_url"><code>success_url</code> (fallback)</label>
+          <input class="input" id="success_url" type="url" placeholder="https://example.com/ok" />
+        </div>
+      </div>
 
-      <p class="hint">Поддерживаются: Meraki ( <code>base_grant_url</code> + <code>user_continue_url</code> ), UniFi/MikroTik ( <code>grant_url</code> / <code>success_url</code> ), CoovaChilli/Chillispot (упрощённый click‑through).</p>
+      <label class="tos"><input id="accept_tos" type="checkbox" /> I accept the Terms of Service</label>
+
+      <div class="actions">
+        <button class="btn" id="connectBtn">Connect</button>
+        <button class="btn secondary" id="loadBtn" type="button">Load from current URL</button>
+        <button class="btn secondary" id="demoBtn" type="button">Fill demo values</button>
+        <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+      </div>
+
+      <p class="status" id="status">Waiting for input…</p>
     </section>
   </main>
 
   <script>
-    // Вспомогательные функции
     const qs = new URLSearchParams(location.search);
     const $ = (id)=>document.getElementById(id);
-    const kv = (k,v)=>`<dt>${k}</dt><dd><code>${(v||'').toString()}</code></dd>`;
 
-    const state = {
-      base_grant_url: qs.get('base_grant_url'),   // Meraki
-      user_continue_url: qs.get('user_continue_url') || qs.get('continue_url') || 'https://example.com/',
-      grant_url: qs.get('grant_url'),             // UniFi/MikroTik/прочие
-      success_url: qs.get('success_url'),
-      login_url: qs.get('login_url'),             // иногда встречается
-    };
-
-    function showContext(){
-      const el = $('kv');
-      el.innerHTML = ''
-        + kv('base_grant_url', state.base_grant_url)
-        + kv('user_continue_url', state.user_continue_url)
-        + kv('grant_url', state.grant_url)
-        + kv('success_url', state.success_url)
-        + kv('login_url', state.login_url);
+    function setStatus(msg, ok){
+      const el=$('status'); el.textContent=msg; el.className='status'+(ok?' ok':'');
     }
 
-    function setStatus(text, ok=false){
-      const s=$('status'); s.textContent=text; s.className = 'hint ' + (ok? 'ok':'');
+    function setDetected(){
+      const list=[];
+      if(qs.get('base_grant_url')) list.push('Detected: base_grant_url');
+      if(qs.get('user_continue_url')||qs.get('continue_url')) list.push('Detected: continue_url');
+      if(qs.get('grant_url')) list.push('Detected: grant_url');
+      if(qs.get('success_url')) list.push('Detected: success_url');
+      $('detected').innerHTML = list.map(t=>`<span class="badge">${t}</span>`).join('');
     }
 
-    function enable(btn){ btn.disabled=false; }
+    function loadFromURL(){
+      $('base_grant_url').value = qs.get('base_grant_url') || '';
+      $('user_continue_url').value = qs.get('user_continue_url') || qs.get('continue_url') || $('user_continue_url').value;
+      $('grant_url').value = qs.get('grant_url') || '';
+      $('success_url').value = qs.get('success_url') || '';
+      setDetected();
+      setStatus('Parameters loaded from current URL.', true);
+    }
 
-    async function connect(){
+    function fillDemo(){
+      $('base_grant_url').value = 'https://example.com/meraki/grant';
+      $('user_continue_url').value = 'https://example.com/';
+      $('grant_url').value = '';
+      $('success_url').value = '';
+      setStatus('Demo values filled. Press Connect to see the redirect URL in your address bar.', true);
+    }
+
+    function resetAll(){
+      ['base_grant_url','user_continue_url','grant_url','success_url'].forEach(id=>$ (id).value='');
+      $('user_continue_url').value = 'https://example.com/';
+      setStatus('Reset done.');
+    }
+
+    function joinUrl(base, key, val){
+      if(!val) return base; const hasQ = base.includes('?');
+      return base + (hasQ?'&':'?') + key + '=' + encodeURIComponent(val);
+    }
+
+    function connect(){
       try{
-        // Вариант A: Meraki EXCAP — нужно открыть base_grant_url с continue_url
-        if(state.base_grant_url){
-          const url = state.base_grant_url + '?continue_url=' + encodeURIComponent(state.user_continue_url);
-          setStatus('Открываем страницу авторизации…', true);
-          location.href = url; return;
+        if(!$('accept_tos').checked){
+          alert('Please accept the Terms of Service to continue.');
+          return;
         }
-        // Вариант B: общий grant_url (UniFi/MikroTik)
-        if(state.grant_url){
-          const url = state.grant_url + (state.user_continue_url ? ('?continue_url=' + encodeURIComponent(state.user_continue_url)) : '');
-          setStatus('Завершаем авторизацию…', true);
-          location.href = url; return;
+        const base_grant_url = $('base_grant_url').value.trim();
+        const continue_url = $('user_continue_url').value.trim();
+        const grant_url = $('grant_url').value.trim();
+        const success_url = $('success_url').value.trim();
+
+        if(base_grant_url){
+          const url = joinUrl(base_grant_url,'continue_url',continue_url);
+          setStatus('Redirecting to Meraki base_grant_url…', true);
+          location.assign(url); return;
         }
-        // Вариант C: success_url как запасной
-        if(state.success_url){
-          setStatus('Переходим к выданному success_url…', true);
-          location.href = state.success_url; return;
+        if(grant_url){
+          const url = continue_url ? joinUrl(grant_url,'continue_url',continue_url) : grant_url;
+          setStatus('Redirecting to grant_url…', true);
+          location.assign(url); return;
         }
-        // Нет параметров — вероятно вы не за captive‑порталом
-        alert('Похоже, эта страница открыта не из гостевой сети с порталом. Подключитесь к Wi‑Fi с порталом и попробуйте снова.');
-        setStatus('Не обнаружены параметры портала.');
+        if(success_url){
+          setStatus('Opening success_url…', true);
+          location.assign(success_url); return;
+        }
+        setStatus('No parameters provided. Enter a URL above or click “Load from current URL”.');
       }catch(e){
-        console.error(e); setStatus('Ошибка: не удалось завершить подключение.');
+        console.error(e); setStatus('Error: failed to complete connection.');
       }
     }
 
-    (function init(){
-      showContext();
-      const btn = $('connectBtn');
-      btn.addEventListener('click', connect);
-      if(state.base_grant_url || state.grant_url || state.success_url){
-        setStatus('Параметры портала обнаружены. Можно подключаться.', true);
-        enable(btn);
-      }else{
-        setStatus('Ожидание параметров портала в строке запроса…');
-      }
-    })();
+    // Wire up
+    $('connectBtn').addEventListener('click', connect);
+    $('loadBtn').addEventListener('click', loadFromURL);
+    $('demoBtn').addEventListener('click', fillDemo);
+    $('resetBtn').addEventListener('click', resetAll);
+
+    // Initial
+    setDetected();
+    if(qs.size){ loadFromURL(); }
   </script>
 </body>
 </html>
